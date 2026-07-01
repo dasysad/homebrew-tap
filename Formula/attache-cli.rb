@@ -1,4 +1,4 @@
-class Attache < Formula
+class AttacheCli < Formula
   desc "Household finance CLI and agent tools"
   homepage "https://github.com/dasysad/attache"
   url "https://github.com/dasysad/attache/archive/refs/tags/v0.1.0.tar.gz"

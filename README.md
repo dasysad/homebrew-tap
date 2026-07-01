@@ -6,15 +6,15 @@ Homebrew tap for [Attache](https://github.com/dasysad/attache) CLI and desktop a
 
 ```bash
 brew tap dasysad/tap
-brew install attache              # CLI
-brew install --cask attache         # desktop (Apple Silicon, after first DMG release)
+brew install attache-cli           # CLI
+brew install --cask attache          # desktop (Apple Silicon, after first DMG release)
 ```
 
 ## Available formulae & casks
 
 | Name | Type | Description |
 |------|------|-------------|
-| `attache` | Formula | Household finance CLI (`attache` command) |
+| `attache-cli` | Formula | Household finance CLI (`attache` command) |
 | `attache` | Cask | Tauri desktop shell over loopback UI |
 
 ## Desktop cask — Gatekeeper
