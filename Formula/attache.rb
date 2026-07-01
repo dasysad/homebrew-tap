@@ -11,6 +11,18 @@ class Attache < Formula
 
   def install
     ENV["PATH"] = "#{Formula["node@22"].opt_bin}:#{Formula["pnpm"].opt_bin}:#{ENV["PATH"]}"
+
+    # pnpm v10+ blocks native postinstall scripts unless allowBuilds is set.
+    workspace = buildpath/"pnpm-workspace.yaml"
+    if workspace.exist? && !workspace.read.include?("allowBuilds:")
+      workspace.append_lines <<~YAML
+
+        allowBuilds:
+          better-sqlite3: true
+          esbuild: true
+      YAML
+    end
+
     system "pnpm", "install", "--frozen-lockfile"
     # CLI only — do not build @attache/desktop (Tauri) during brew install.
     system "pnpm", "--filter", "@attache/cli...", "build"
