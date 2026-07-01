@@ -12,7 +12,8 @@ class Attache < Formula
   def install
     ENV["PATH"] = "#{Formula["node@22"].opt_bin}:#{Formula["pnpm"].opt_bin}:#{ENV["PATH"]}"
     system "pnpm", "install", "--frozen-lockfile"
-    system "pnpm", "build"
+    # CLI only — do not build @attache/desktop (Tauri) during brew install.
+    system "pnpm", "--filter", "@attache/cli...", "build"
     bin.install "packages/cli/dist/main.js" => "attache"
   end
 
