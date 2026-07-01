@@ -27,7 +27,12 @@ class AttacheCli < Formula
     system "pnpm", "--filter", "@attache/cli...", "build"
     system "pnpm", "--filter=@attache/cli", "deploy", "--legacy", libexec.to_s
 
-    (bin/"attache").write_env_script libexec/"dist/main.js", PATH: "#{Formula["node@22"].opt_bin}:$PATH"
+    (bin/"attache").write <<~EOS
+      #!/bin/bash
+      export PATH="#{Formula["node@22"].opt_bin}:$PATH"
+      cd "#{libexec}"
+      exec node dist/main.js "$@"
+    EOS
   end
 
   test do
