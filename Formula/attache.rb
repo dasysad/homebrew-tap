@@ -24,9 +24,10 @@ class Attache < Formula
     end
 
     system "pnpm", "install", "--frozen-lockfile"
-    # CLI only — do not build @attache/desktop (Tauri) during brew install.
     system "pnpm", "--filter", "@attache/cli...", "build"
-    bin.install "packages/cli/dist/main.js" => "attache"
+    system "pnpm", "--filter=@attache/cli", "deploy", "--legacy", libexec.to_s
+
+    (bin/"attache").write_env_script libexec/"dist/main.js", PATH: "#{Formula["node@22"].opt_bin}:$PATH"
   end
 
   test do
