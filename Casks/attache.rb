@@ -8,7 +8,7 @@ cask "attache" do
   homepage "https://github.com/dasysad/attache"
 
   depends_on arch: :arm64
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Attache.app"
 
